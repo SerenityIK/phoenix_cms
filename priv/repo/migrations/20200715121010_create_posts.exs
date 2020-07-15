@@ -7,8 +7,9 @@ defmodule PhoenixCms.Repo.Migrations.CreatePosts do
       add :body, :text
       add :published, :boolean, default: false, null: false
       add :cover, :string
-      add :user_id, :integer
-      add :slug, :string
+      add :slug, :string, unique: true
+
+      belong_to :user, User
 
       timestamps()
     end
