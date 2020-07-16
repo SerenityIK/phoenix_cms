@@ -50,6 +50,10 @@ defmodule PhoenixCms.MixProject do
       {:arc, "~> 0.11.0"},
       {:arc_ecto, "~> 0.11.3"},
       {:slugger, "~> 0.3"},
+
+      # User authentication
+      {:comeonin, "~> 5.3.1"},
+      {:guardian, "~> 2.0"},
     ]
   end
 

@@ -24,8 +24,8 @@ defmodule PhoenixCmsWeb.Router do
   scope "/admin", PhoenixCmsWeb, as: :admin do
     pipe_through :browser
     get "/", Admin.HomeController, :index
-    resources("/post", Admin.Postcontroller) do
-      get "/publish", Admin.Postcontroller, :publish, as: :publish
+    resources("/post", Admin.PostController) do
+      get "/publish", Admin.PostController, :publish, as: :publish
     end
   end
 

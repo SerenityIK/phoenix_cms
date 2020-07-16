@@ -1,7 +1,7 @@
 defmodule PhoenixCms.Content.Blog do
 
-  alias PhoenixCms.Content.Post
   alias PhoenixCms.Repo
+  alias PhoenixCms.Content.Post
 
   import Ecto.Query
 

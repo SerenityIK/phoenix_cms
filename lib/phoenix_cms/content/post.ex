@@ -4,8 +4,10 @@ defmodule PhoenixCms.Content.Post do
   import Ecto.Changeset
   require Slugger
 
- 
+
+  alias PhoenixCms.Content.User
   alias PhoenixCmsWeb.Uploaders.Cover
+
 
   schema "posts" do
     field :body, :string

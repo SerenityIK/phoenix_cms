@@ -4,8 +4,10 @@ defmodule PhoenixCms.Accounts do
   """
 
   import Ecto.Query, warn: false
-  alias PhoenixCms.Repo
+  import Plug.Conn
 
+  alias PhoenixCms.Repo
+  alias PhoenixCms.Accounts.Guardian
   alias PhoenixCms.Accounts.User
 
   @doc """
@@ -100,5 +102,43 @@ defmodule PhoenixCms.Accounts do
   """
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
+  end
+ 
+  def get_current_user(conn) do
+    Guardian.Plug.current_resource(conn)
+  end
+
+  def is_current_user_admin?(conn) do
+    user = Guardian.Plug.current_resource(conn)
+    case user do
+      nil -> false
+      user -> user.is_admin
+    end
+  end
+
+  def authenticate_user(email, given_password) do
+    query = Ecto.Query.from(u in User, where: u.email == ^email)
+    Repo.one(query)
+    |> check_password(given_password)
+  end
+
+  def login(conn, user) do
+    conn
+    |> Guardian.Plug.sign_in(user)
+    |> assign(:current_user, user)
+  end
+
+  def logout(conn) do
+    conn
+    |> Guardian.Plug.sign_out()
+  end
+
+  # Private functions
+  defp check_password(nil, _), do: {:error, "Wrong email or password"}
+  defp check_password(user, given_password) do
+    case Argon2.check_pass(given_password, user.password_hash) do
+      true -> {:ok, user}
+      false -> {:error, "Wrong email or password"}
+    end
   end
 end
