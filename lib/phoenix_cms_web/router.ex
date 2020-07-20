@@ -9,7 +9,7 @@ defmodule PhoenixCmsWeb.Router do
     plug :put_secure_browser_headers
     plug Plug.Auth
   end
- 
+
   pipeline :authenticated do
     plug Plug.EnsureAuth
   end
@@ -38,4 +38,12 @@ defmodule PhoenixCmsWeb.Router do
   # scope "/api", PhoenixCmsWeb do
   #   pipe_through :api
   # end
+  if Mix.env() in [:dev, :test] do
+    import Phoenix.LiveDashboard.Router
+
+    scope "/" do
+    pipe_through(:browser)
+    live_dashboard("/dashboard", metrics: ProjectPhoenixWeb.Telemetry)
+    end
+  end
 end

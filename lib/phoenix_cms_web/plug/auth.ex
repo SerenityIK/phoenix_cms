@@ -6,6 +6,6 @@ defmodule PhoenixCms.Plug.Auth do
     module: PhoenixCms.Accounts.Guardian
 
   plug Guardian.Plug.VerifySession
-  plug Guardian.Plug.LoadResource
+  plug Guardian.Plug.LoadResource, allow_blank: true
 
 end

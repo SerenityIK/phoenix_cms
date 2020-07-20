@@ -51,7 +51,7 @@ defmodule PhoenixCms.Content do
   """
   def create_post(attrs \\ %{}) do
     %Post{}
-    |> Post.changeset(attrs)
+    |> Post.common_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -69,7 +69,7 @@ defmodule PhoenixCms.Content do
   """
   def update_post(%Post{} = post, attrs) do
     post
-    |> Post.changeset(attrs)
+    |> Post.common_changeset(attrs)
     |> Repo.update()
   end
 
@@ -99,6 +99,6 @@ defmodule PhoenixCms.Content do
 
   """
   def change_post(%Post{} = post, attrs \\ %{}) do
-    Post.changeset(post, attrs)
+    Post.common_changeset(post, attrs)
   end
 end

@@ -5,7 +5,7 @@ defmodule PhoenixCms.Content.Post do
   require Slugger
 
 
-  alias PhoenixCms.Content.User
+  alias PhoenixCms.Accounts.User
   # alias PhoenixCmsWeb.Uploaders.Cover
 
 
@@ -23,7 +23,7 @@ defmodule PhoenixCms.Content.Post do
   end
 
   @doc false
-  def changeset(post, attrs) do
+  def create_changeset(post, attrs) do
     post
     |> common_changeset(attrs)
     |> validate_required([:cover, :user_id])
