@@ -6,7 +6,7 @@ defmodule PhoenixCms.Content.Post do
 
 
   alias PhoenixCms.Content.User
-  alias PhoenixCmsWeb.Uploaders.Cover
+  # alias PhoenixCmsWeb.Uploaders.Cover
 
 
   schema "posts" do
@@ -15,7 +15,7 @@ defmodule PhoenixCms.Content.Post do
     field :published, :boolean, default: false
     field :slug, :string
     field :title, :string
-    field :cover, Cover.Type
+    # field :cover, Cover.Type
 
     belongs_to :user, User
 
@@ -34,7 +34,7 @@ defmodule PhoenixCms.Content.Post do
     |> cast(attrs, [:title, :body, :published, :user_id])
     |> cast_attachments(attrs, [:cover])
     |> validate_required([:title, :body])
-    |> validate_lenght(:title, min: 1)
+    |> validate_length(:title, min: 1)
     |> process_slug()
   end
 

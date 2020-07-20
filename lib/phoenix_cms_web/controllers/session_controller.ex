@@ -31,8 +31,8 @@ defmodule PhoenixCmsWeb.SessionController do
   # Private functions
   defp redirect_after_login(conn, user) do
     case user.is_admin do
-      true -> redirect(conn, to: admin_home_path(conn, :index))
-      false -> redirect(conn, to: blog_path(conn, :index))
+      true -> redirect(conn, to: Routes.admin_home_path(conn, :index))
+      false -> redirect(conn, to: Routes.blog_path(conn, :index))
     end
   end
 end

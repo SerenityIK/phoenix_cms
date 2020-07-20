@@ -12,7 +12,7 @@ defmodule PhoenixCmsWeb.BlogController do
 
   def show(conn, %{"id" => slug}) do
     with %Post{} = post <- Blog.get(slug, true) do
-      reneder(conn, "show.html", post: post)
+      render(conn, "show.html", post: post)
     end
   end
 end
