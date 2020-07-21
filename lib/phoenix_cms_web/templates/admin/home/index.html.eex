@@ -1,0 +1,18 @@
+<div>
+  <div style="width:<%= 100*(@context.published_posts/ 1 || @context.total_posts) %>%">Published</div>
+  <div style="width:<%= 100*(@context.draft_posts/1 || @context.total_posts) %>%">Draft</div>
+  <table>
+     <tr>
+      <td>Total Posts</td>
+      <td><%= @context.total_posts %></td>
+    </tr>
+    <tr>
+      <td>Published Posts</td>
+      <td><%= @context.published_posts %></td>
+    </tr>
+    <tr>
+      <td>Drafts</td>
+      <td><%= @context.draft_posts %></td>
+    </tr>
+  </table>
+</div>
