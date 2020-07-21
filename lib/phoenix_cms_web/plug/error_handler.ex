@@ -1,4 +1,4 @@
-defmodule PhoenixCms.GuardianErrorHandler do
+defmodule PhoenixCmsWeb.GuardianErrorHandler do
   use PhoenixCmsWeb, :controller
 
   def auth_error(conn, _, _opts) do

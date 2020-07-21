@@ -1,4 +1,4 @@
-defmodule PhoenixCms.Plug.Auth do
+defmodule PhoenixCmsWeb.Plug.Auth do
 
   use Guardian.Plug.Pipeline,
     otp_app: :phoenix_cms,

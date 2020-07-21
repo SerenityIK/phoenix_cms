@@ -2,9 +2,9 @@ use Mix.Config
 
 # Configure your database
 config :phoenix_cms, PhoenixCms.Repo,
-  username: "phoenix",
-  password: "q4nMsy3ZgyokTUsPK2mH9HU9YhSLwmhCMDnZn7DzzNV9ATFsKVhpnBJJKWLv",
-  database: "phoenix_cms",
+  username: "postgres",
+  password: "postgres",
+  database: "phoenix_cms_web",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

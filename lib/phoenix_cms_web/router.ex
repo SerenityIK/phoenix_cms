@@ -1,6 +1,9 @@
 defmodule PhoenixCmsWeb.Router do
   use PhoenixCmsWeb, :router
 
+  alias PhoenixCmsWeb.Plug
+
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
