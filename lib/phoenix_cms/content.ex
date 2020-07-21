@@ -1,104 +1,49 @@
 defmodule PhoenixCms.Content do
-  @moduledoc """
-  The Content context.
-  """
 
   import Ecto.Query, warn: false
-  alias PhoenixCms.Repo
 
+  alias PhoenixCms.Repo
   alias PhoenixCms.Content.Post
 
-  @doc """
-  Returns the list of posts.
 
-  ## Examples
-
-      iex> list_posts()
-      [%Post{}, ...]
-
-  """
-  def list_posts do
-    Repo.all(Post)
+  def list_posts() do
+    Repo.all(from p in Post, preload: :user)
   end
 
-  @doc """
-  Gets a single post.
-
-  Raises `Ecto.NoResultsError` if the Post does not exist.
-
-  ## Examples
-
-      iex> get_post!(123)
-      %Post{}
-
-      iex> get_post!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_post!(id), do: Repo.get!(Post, id)
-
-  @doc """
-  Creates a post.
-
-  ## Examples
-
-      iex> create_post(%{field: value})
-      {:ok, %Post{}}
-
-      iex> create_post(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_post(attrs \\ %{}) do
-    %Post{}
-    |> Post.common_changeset(attrs)
-    |> Repo.insert()
+  def get_published_posts() do
+    Repo.all(from p in Post, where: p.published == true, preload: :user)
   end
 
-  @doc """
-  Updates a post.
+  def get_post!(slug) do
+    Repo.get_by(Post, slug: slug)
+  end
 
-  ## Examples
+  def get_post!(slug, true) do
+    Repo.get_by(Post, slug: slug)
+    |> Repo.preload([:user])
+  end
 
-      iex> update_post(post, %{field: new_value})
-      {:ok, %Post{}}
-
-      iex> update_post(post, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_post(%Post{} = post, attrs) do
+  def create_post(post, user) do
     post
-    |> Post.common_changeset(attrs)
+    |> Map.put("user_id", user.id)
+    changeset = Post.create_changeset(%Post{}, post)
+    case changeset.valid? do
+      true -> Repo.insert(changeset)
+      false -> {:error, changeset}
+    end
+  end
+
+  def update_post(post, params) do
+    changeset = Post.common_changeset(post, params)
+    case changeset.valid? do
+      true -> Repo.update(changeset)
+      false -> {:erroe, changeset}
+    end
+  end
+
+  def publish_post(post) do
+    Post.common_changeset(post, %{published: not post.published})
     |> Repo.update()
   end
 
-  @doc """
-  Deletes a post.
-
-  ## Examples
-
-      iex> delete_post(post)
-      {:ok, %Post{}}
-
-      iex> delete_post(post)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_post(%Post{} = post) do
-    Repo.delete(post)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking post changes.
-
-  ## Examples
-
-      iex> change_post(post)
-      %Ecto.Changeset{data: %Post{}}
-
-  """
-  def change_post(%Post{} = post, attrs \\ %{}) do
-    Post.common_changeset(post, attrs)
-  end
 end

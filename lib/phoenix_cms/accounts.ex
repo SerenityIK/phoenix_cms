@@ -103,7 +103,7 @@ defmodule PhoenixCms.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
- 
+
   def get_current_user(conn) do
     Guardian.Plug.current_resource(conn)
   end
