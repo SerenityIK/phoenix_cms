@@ -4,7 +4,7 @@ use Mix.Config
 config :phoenix_cms, PhoenixCms.Repo,
   username: "postgres",
   password: "postgres",
-  database: "phoenix_cms_web",
+  database: "phoenix_cms_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
