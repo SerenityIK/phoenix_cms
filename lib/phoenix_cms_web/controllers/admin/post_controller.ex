@@ -1,4 +1,4 @@
-defmodule PhoenixCmsWeb.PostController do
+defmodule PhoenixCmsWeb.Admin.PostController do
   use PhoenixCmsWeb, :controller
 
   alias PhoenixCms.Content
@@ -19,7 +19,7 @@ defmodule PhoenixCmsWeb.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
-        |> redirect(to: Routes.post_path(conn, :show, post))
+        |> redirect(to: Routes.admin_post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule PhoenixCmsWeb.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")
-        |> redirect(to: Routes.post_path(conn, :show, post))
+        |> redirect(to: Routes.admin_post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", post: post, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule PhoenixCmsWeb.PostController do
 
     conn
     |> put_flash(:info, "Post deleted successfully.")
-    |> redirect(to: Routes.post_path(conn, :index))
+    |> redirect(to: Routes.admin_post_path(conn, :index))
   end
 end
