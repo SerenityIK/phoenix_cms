@@ -1,0 +1,11 @@
+<div>
+  <div>
+    <h1><%= @post.title %></h1>
+    <br>
+    <p><%= @post.user.name %></p>
+    <br><br>
+  </div>
+
+  <%= raw Earmark.as_html!(@post.body) %>
+
+</div>

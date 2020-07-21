@@ -1,0 +1,16 @@
+<div>
+  <%= for post <- @posts do %>
+    <a href="<%= Routes.blog_path(@conn, :show, post) %>">
+    <div>
+      <%= post.title %>
+      <br><br><p><%= post_excerpt(post) %></p>
+    </div>
+    <div>
+      <small>
+        <%= format_date(post) %> by
+        <strong><%= post.user.name %></strong>
+      </small>
+    </div>
+    </a>
+    <% end %>
+</div>

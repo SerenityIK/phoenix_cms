@@ -54,6 +54,7 @@ defmodule PhoenixCms.MixProject do
       # User authentication
       {:comeonin, "~> 5.3.1"},
       {:guardian, "~> 2.0"},
+      {:timex, "~> 3.5"}
     ]
   end
 
