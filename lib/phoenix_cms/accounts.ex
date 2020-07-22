@@ -7,8 +7,10 @@ defmodule PhoenixCms.Accounts do
   import Plug.Conn
 
   alias PhoenixCms.Repo
+  alias Comeonin.Argon2
   alias PhoenixCms.Accounts.Guardian
   alias PhoenixCms.Accounts.User
+
 
   @doc """
   Returns the list of users.
@@ -134,6 +136,7 @@ defmodule PhoenixCms.Accounts do
   end
 
   # Private functions
+
   defp check_password(nil, _), do: {:error, "Wrong email or password"}
   defp check_password(user, given_password) do
     case Argon2.check_pass(given_password, user.password_hash) do
@@ -141,4 +144,5 @@ defmodule PhoenixCms.Accounts do
       false -> {:error, "Wrong email or password"}
     end
   end
+
 end
