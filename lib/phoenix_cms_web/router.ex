@@ -30,7 +30,7 @@ defmodule PhoenixCmsWeb.Router do
   end
 
   scope "/admin", PhoenixCmsWeb, as: :admin do
-    pipe_through :browser
+    pipe_through([:browser])
     get "/", Admin.HomeController, :index
     resources("/post", Admin.PostController) do
       get "/publish", Admin.PostController, :publish, as: :publish
@@ -45,7 +45,7 @@ defmodule PhoenixCmsWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-    pipe_through(:browser)
+    pipe_through([:browser, :authenticated])
     live_dashboard("/dashboard", metrics: ProjectPhoenixWeb.Telemetry)
     end
   end

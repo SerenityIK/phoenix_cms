@@ -34,4 +34,4 @@ import_config "#{Mix.env()}.exs"
 # !!! Warning !!! You need to replace secret key with your own, generated one with command 'mix guardian.gen.secret'.
 config :phoenix_cms, PhoenixCms.Accounts.Guardian,
   issuer: "phoenix_cms",
-  secret_key: ""
+  secret_key: "PABN3difT+YkuprYhyduEAt52DAX8jZtTvBu280oRDpzRW2Bla6Q/6KNBD7wyXcc"
