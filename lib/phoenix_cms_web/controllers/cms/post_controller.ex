@@ -1,4 +1,4 @@
-defmodule PhoenixCmsWeb.Admin.PostController do
+defmodule PhoenixCmsWeb.Cms.PostController do
 
   use PhoenixCmsWeb, :controller
 

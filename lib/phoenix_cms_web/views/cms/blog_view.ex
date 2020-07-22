@@ -1,4 +1,4 @@
-defmodule PhoenixCmsWeb.Admin.BlogView do
+defmodule PhoenixCmsWeb.Cms.BlogView do
   use PhoenixCmsWeb, :view
 
   def published_status(post) do

@@ -26,14 +26,15 @@ defmodule PhoenixCmsWeb.Router do
 
     get "/", PageController, :index
     resources("/blog", BlogController, only: [:index, :show])
+    # resources("/user", UserController, except: [:index, :new])
     resources("/session", SessionController, only: [:create, :new, :delete])
   end
 
-  scope "/admin", PhoenixCmsWeb, as: :admin do
+  scope "/cms", PhoenixCmsWeb, as: :admin do
     pipe_through([:browser])
-    get "/", Admin.HomeController, :index
-    resources("/post", Admin.PostController) do
-      get "/publish", Admin.PostController, :publish, as: :publish
+    get "/", Cms.HomeController, :index
+    resources("/post", Cms.PostController) do
+      get "/publish", Cms.PostController, :publish, as: :publish
     end
   end
 

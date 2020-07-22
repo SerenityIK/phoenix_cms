@@ -1,4 +1,4 @@
-defmodule PhoenixCmsWeb.Admin.HomeController do
+defmodule PhoenixCmsWeb.Cms.HomeController do
   use PhoenixCmsWeb, :controller
 
   alias PhoenixCms.Content
