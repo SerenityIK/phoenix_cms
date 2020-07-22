@@ -13,6 +13,7 @@ defmodule PhoenixCmsWeb.SessionController do
       {:ok, user} ->
         conn
         |> Accounts.login(user)
+        |> put_flash(:info, "Welcome back")
         |> redirect_after_login(user)
 
       {:error, _} ->
