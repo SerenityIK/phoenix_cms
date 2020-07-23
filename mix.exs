@@ -49,13 +49,13 @@ defmodule PhoenixCms.MixProject do
       # Blog engine
       {:arc, "~> 0.11.0"},
       {:arc_ecto, "~> 0.11.3"},
+      {:earmark, "~> 1.4.10"},
       {:slugger, "~> 0.3"},
+      {:timex, "~> 3.5"},
 
       # User authentication
       {:argon2_elixir, "~> 2.3.0"},
-      {:earmark, "~> 1.4.10"},
       {:guardian, "~> 2.0"},
-      {:timex, "~> 3.5"},
     ]
   end
 

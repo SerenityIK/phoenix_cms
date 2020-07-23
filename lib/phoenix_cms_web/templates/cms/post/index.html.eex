@@ -33,4 +33,4 @@
   </tbody>
 </table>
 
-<span><%= link "New Post", to: Routes.admin_post_path(@conn, :new) %></span>
+<span><%= link "New Post", to: Routes.cms_post_path(@conn, :new) %></span>
