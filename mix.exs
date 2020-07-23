@@ -52,7 +52,7 @@ defmodule PhoenixCms.MixProject do
       {:slugger, "~> 0.3"},
 
       # User authentication
-      {:comeonin, "~> 5.3.1"},
+      {:argon2_elixir, "~> 2.3.0"},
       {:earmark, "~> 1.4.10"},
       {:guardian, "~> 2.0"},
       {:timex, "~> 3.5"},

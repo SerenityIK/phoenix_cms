@@ -19,8 +19,8 @@
 
   <div class="form-group">
     <%= label f, :password %>
-    <%= password_input f, :password_hash, placeholder: "Min 8 symbols" %>
-    <%= error_tag f, :password_hash %>
+    <%= password_input f, :password, placeholder: "Min 8 symbols" %>
+    <%= error_tag f, :password %>
   </div>
 
   <div>

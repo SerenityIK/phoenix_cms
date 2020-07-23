@@ -7,7 +7,6 @@ defmodule PhoenixCms.Accounts do
   import Plug.Conn
 
   alias PhoenixCms.Repo
-  alias Comeonin.Argon2
   alias PhoenixCms.Accounts.Guardian
   alias PhoenixCms.Accounts.User
 
@@ -139,7 +138,7 @@ defmodule PhoenixCms.Accounts do
 
   defp check_password(nil, _), do: {:error, "Wrong email or password"}
   defp check_password(user, given_password) do
-    case Argon2.check_pass(given_password, user.password_hash) do
+    case Argon2.verify_pass(given_password, user.password_hash) do
       true -> {:ok, user}
       false -> {:error, "Wrong email or password"}
     end
