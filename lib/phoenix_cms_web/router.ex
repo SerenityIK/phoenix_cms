@@ -30,8 +30,8 @@ defmodule PhoenixCmsWeb.Router do
     resources("/session", SessionController, only: [:create, :new, :delete])
   end
 
-  scope "/cms", PhoenixCmsWeb, as: :admin do
-    pipe_through([:browser])
+  scope "/cms", PhoenixCmsWeb, as: :cms do
+    pipe_through([:browser, :authenticated])
     get "/", Cms.HomeController, :index
     resources("/post", Cms.PostController) do
       get "/publish", Cms.PostController, :publish, as: :publish

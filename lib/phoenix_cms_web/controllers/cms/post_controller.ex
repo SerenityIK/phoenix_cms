@@ -20,7 +20,7 @@ defmodule PhoenixCmsWeb.Cms.PostController do
   def create(conn, %{"post" => params}) do
     user = Accounts.get_current_user(conn)
     with {:ok, _post} <- Content.create_post(params, user) do
-      redirect(conn, to: Routes.admin_post_path(conn, :index))
+      redirect(conn, to: Routes.cms_post_path(conn, :index))
     else
       {:error, changeset} ->
         render(conn, "new.html", changeset: %{changeset | action: :new})
@@ -37,14 +37,14 @@ defmodule PhoenixCmsWeb.Cms.PostController do
   def update(conn, %{"id" => id, "post" => params}) do
     with %Post{} = post <- Content.get_post!(id),
          {:ok, _post} <- Content.update_post(post, params) do
-            redirect(conn, to: Routes.admin_post_path(conn, :index))
+            redirect(conn, to: Routes.cms_post_path(conn, :index))
     end
   end
 
   def publish(conn, %{"post_id" => id}) do
     with %Post{} = post <- Content.get_post!(id),
          {:ok, _post} <- Content.publish_post(post) do
-            redirect(conn, to: Routes.admin_post_path(conn, :index))
+            redirect(conn, to: Routes.cms_post_path(conn, :index))
     end
   end
 
