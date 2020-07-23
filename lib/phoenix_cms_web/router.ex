@@ -26,7 +26,7 @@ defmodule PhoenixCmsWeb.Router do
 
     get "/", PageController, :index
     resources("/blog", BlogController, only: [:index, :show])
-    # resources("/user", UserController, except: [:index, :new])
+    resources("/user", UserController, except: [:index])
     resources("/session", SessionController, only: [:create, :new, :delete])
   end
 
