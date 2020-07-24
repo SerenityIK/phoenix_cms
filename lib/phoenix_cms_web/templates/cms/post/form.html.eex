@@ -17,10 +17,6 @@
   <%= error_tag f, :body %>
   </div>
 
-  <%= label f, :published %>
-  <%= checkbox f, :published %>
-  <%= error_tag f, :published %>
-
   <div class="form-group">
     <label>
       Upload Cover Image : &nbsp; <%= file_input f, :cover %>

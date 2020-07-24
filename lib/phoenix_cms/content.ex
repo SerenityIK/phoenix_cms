@@ -24,7 +24,7 @@ defmodule PhoenixCms.Content do
   end
 
   def create_post(post, user) do
-    post
+    post = post
     |> Map.put("user_id", user.id)
     changeset = Post.create_changeset(%Post{}, post)
     case changeset.valid? do

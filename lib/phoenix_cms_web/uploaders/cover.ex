@@ -6,8 +6,11 @@ defmodule PhoenixCmsWeb.Uploaders.Cover do
   @versions [:original, :thumb]
 
   # Whitelist file extensions:
+  @extension_whitelist ~w(.jpg .jpeg .gif .png)
+
   def validate({file, _}) do
-    ~w(.jpg .jpeg .gif .png) |> Enum.member?(Path.extname(file.file_name))
+    file_extension = file.file_name |> Path.extname() |> String.downcase()
+    Enum.member?(@extension_whitelist, file_extension)
   end
 
   # Define a thumbnail transformation:

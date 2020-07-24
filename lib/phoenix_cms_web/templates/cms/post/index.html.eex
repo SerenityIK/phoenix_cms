@@ -17,11 +17,7 @@
 <%= for post <- @posts do %>
     <tr>
       <td><%= post.title %></td>
-      <td><%= post.body %></td>
-      <td><%= post.published %></td>
-      <td><%= post.cover %></td>
       <td><%= post.user_id %></td>
-      <td><%= post.slug %></td>
 
       <td>
         <span><%= link "Show", to: Routes.cms_post_path(@conn, :show, post) %></span>
