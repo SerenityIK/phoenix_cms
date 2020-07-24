@@ -35,3 +35,6 @@ import_config "#{Mix.env()}.exs"
 config :phoenix_cms, PhoenixCms.Accounts.Guardian,
   issuer: "phoenix_cms",
   secret_key: "PABN3difT+YkuprYhyduEAt52DAX8jZtTvBu280oRDpzRW2Bla6Q/6KNBD7wyXcc"
+
+config :arc,
+  storage: Arc.Storage.Local

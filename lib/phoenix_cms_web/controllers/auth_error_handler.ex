@@ -1,8 +1,6 @@
 defmodule PhoenixCmsWeb.AuthErrorHandler do
   use PhoenixCmsWeb, :controller
 
-  import Plug.Conn
-
   @behaviour Guardian.Plug.ErrorHandler
 
   @impl Guardian.Plug.ErrorHandler

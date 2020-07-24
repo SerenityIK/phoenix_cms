@@ -6,16 +6,15 @@ defmodule PhoenixCms.Content.Post do
   require Slugger
 
   alias PhoenixCms.Accounts.User
-  # alias PhoenixCmsWeb.Uploaders.Cover
+  alias PhoenixCmsWeb.Uploaders.Cover
 
 
   schema "posts" do
     field :body, :string
-    field :cover, :string
     field :published, :boolean, default: false
     field :slug, :string
     field :title, :string
-    # field :cover, Cover.Type
+    field :cover, Cover.Type
 
     belongs_to :user, User
 
@@ -34,12 +33,12 @@ defmodule PhoenixCms.Content.Post do
     |> cast(attrs, [:title, :body, :published, :user_id])
     |> cast_attachments(attrs, [:cover])
     |> validate_required([:title, :body])
-    |> validate_length(:title, min: 1)
+    |> validate_length(:title, min: 3)
     |> process_slug()
   end
 
   # Private functions
- 
+
   defp process_slug(%Ecto.Changeset{valid?: validity, changes: %{title: title}} = changeset) do
     case validity do
       true -> put_change(changeset, :slug, Slugger.slugify_downcase(title))

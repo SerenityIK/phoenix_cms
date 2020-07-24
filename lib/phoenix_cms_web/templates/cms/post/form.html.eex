@@ -1,33 +1,33 @@
-<%= form_for @changeset, @action, fn f -> %>
+<%= form_for @changeset, @action, [as: :post, multipart: true], fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
 
-  <%= label f, :title %>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
+  <div class="form-group">
+    <%= label f, :title %>
+    <%= text_input f, :title, placeholder: "Your theme" %>
+    <%= error_tag f, :title %>
+  </div>
 
+  <div class="form-group">
   <%= label f, :body %>
-  <%= textarea f, :body %>
+  <%= textarea f, :body, placeholder: "Content" %>
   <%= error_tag f, :body %>
+  </div>
 
   <%= label f, :published %>
   <%= checkbox f, :published %>
   <%= error_tag f, :published %>
 
-  <%= label f, :cover %>
-  <%= text_input f, :cover %>
-  <%= error_tag f, :cover %>
-
-  <%= label f, :user_id %>
-  <%= number_input f, :user_id %>
-  <%= error_tag f, :user_id %>
-
-  <%= label f, :slug %>
-  <%= text_input f, :slug %>
-  <%= error_tag f, :slug %>
+  <div class="form-group">
+    <label>
+      Upload Cover Image : &nbsp; <%= file_input f, :cover %>
+      <%= error_tag f, :cover %>
+    </label>
+    <%= error_tag f, :cover %>
+  </div>
 
   <div>
     <%= submit "Save" %>
