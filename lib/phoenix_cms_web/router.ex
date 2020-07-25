@@ -25,9 +25,9 @@ defmodule PhoenixCmsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources("/blog", BlogController, only: [:index, :show])
     resources("/user", UserController, except: [:index])
     resources("/session", SessionController, only: [:create, :new, :delete])
+    resources("/blog", BlogController, only: [:index, :show])
   end
 
   scope "/cms", PhoenixCmsWeb, as: :cms do

@@ -34,6 +34,12 @@ defmodule PhoenixCmsWeb.Cms.PostController do
     end
   end
 
+  def show(conn, %{"id" => slug}) do
+    with %Post{} = post <- Content.get_post!(slug) do
+      render(conn, "show.html", post: post)
+    end
+  end
+
   def update(conn, %{"id" => id, "post" => params}) do
     with %Post{} = post <- Content.get_post!(id),
          {:ok, _post} <- Content.update_post(post, params) do
@@ -46,6 +52,15 @@ defmodule PhoenixCmsWeb.Cms.PostController do
          {:ok, _post} <- Content.publish_post(post) do
             redirect(conn, to: Routes.cms_post_path(conn, :index))
     end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    post = Content.get_post!(id)
+    {:ok, _post} = Content.delete_post(post)
+
+    conn
+    |> put_flash(:info, "Post deleted successfully.")
+    |> redirect(to: Routes.cms_post_path(conn, :index))
   end
 
 end

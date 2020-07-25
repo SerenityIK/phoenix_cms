@@ -14,8 +14,10 @@ defmodule PhoenixCms.Content do
     Repo.all(from p in Post, where: p.published == true, preload: :user)
   end
 
-  def get_post!(slug) do
-    Repo.get_by(Post, slug: slug)
+  def get_post!(id) do
+    Post
+    |> Repo.get!(id)
+    |> Repo.preload([:user])
   end
 
   def get_post!(slug, true) do
@@ -37,13 +39,17 @@ defmodule PhoenixCms.Content do
     changeset = Post.common_changeset(post, params)
     case changeset.valid? do
       true -> Repo.update(changeset)
-      false -> {:erroe, changeset}
+      false -> {:error, changeset}
     end
   end
 
   def publish_post(post) do
     Post.common_changeset(post, %{published: not post.published})
     |> Repo.update()
+  end
+
+  def delete_post(post) do
+    Repo.delete(post)
   end
 
 end

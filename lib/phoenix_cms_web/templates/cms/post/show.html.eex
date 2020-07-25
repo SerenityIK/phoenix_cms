@@ -19,7 +19,7 @@
 
   <li>
     <strong>Cover:</strong>
-    <%= @post.cover %>
+    <img src="<%= PhoenixCmsWeb.Uploaders.Cover.url({@post.cover, @post}, :original) %>">
   </li>
 
   <li>

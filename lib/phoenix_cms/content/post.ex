@@ -8,11 +8,12 @@ defmodule PhoenixCms.Content.Post do
   alias PhoenixCms.Accounts.User
   alias PhoenixCmsWeb.Uploaders.Cover
 
+  # @derive {Phoenix.Param, key: :slug}
 
   schema "posts" do
     field :body, :string
     field :published, :boolean, default: false
-    field :slug, :string
+    field :slug, :string, unique: true
     field :title, :string
     field :cover, Cover.Type
 
@@ -45,6 +46,7 @@ defmodule PhoenixCms.Content.Post do
       false -> changeset
     end
   end
+
   defp process_slug(changeset), do: changeset
 
 end

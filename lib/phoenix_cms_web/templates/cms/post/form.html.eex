@@ -17,11 +17,13 @@
   <%= error_tag f, :body %>
   </div>
 
+  <%= label f, :published %>
+  <%= checkbox f, :published %>
+  <%= error_tag f, :punblished %>
+
   <div class="form-group">
-    <label>
-      Upload Cover Image : &nbsp; <%= file_input f, :cover %>
-      <%= error_tag f, :cover %>
-    </label>
+    <%= label f, :cover %>
+    <%= file_input f, :cover %>
     <%= error_tag f, :cover %>
   </div>
 
