@@ -35,3 +35,6 @@ npm-debug.log
 
 # Ignore Dialyzer cache
 /.elixir_ls/
+
+# Ignore uploads directory
+/uploads/
