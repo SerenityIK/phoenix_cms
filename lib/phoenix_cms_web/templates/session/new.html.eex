@@ -1,6 +1,6 @@
 <div>
   <h2>Log In</h2>
-  <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session], fn f -> %>
+  <%= form_for @conn, Routes.session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
 
     <div class="form-group">
       <%= label f, :email %>

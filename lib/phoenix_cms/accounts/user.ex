@@ -2,12 +2,17 @@ defmodule PhoenixCms.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias PhoenixCms.Content.Post
+
+
   schema "users" do
     field :email, :string
     field :is_admin, :boolean, default: false
     field :name, :string
     field :password_hash, :string
     field(:password, :string, virtual: true)
+
+    has_many :posts, Post
 
     timestamps()
   end

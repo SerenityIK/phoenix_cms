@@ -4,21 +4,21 @@ defmodule PhoenixCmsWeb.SessionController do
   alias PhoenixCms.Accounts
 
 
-  def new(conn, _) do
-    render(conn, "new.html")
-  end
+  def new(conn, _), do: render(conn, "new.html")
 
-  def create(conn, %{"session" => %{"email" => email, "password" => password}}) do
+  def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
     case Accounts.authenticate_user(email, password) do
       {:ok, user} ->
         conn
         |> Accounts.login(user)
         |> put_flash(:info, "Welcome back")
-        |> redirect_after_login(user)
+        |> put_session(:current_user, %{id: user.id, name: user.name})
+        |> redirect(to: Routes.cms_home_path(conn, :index))
 
       {:error, _} ->
         conn
         |> put_flash(:error, "Wrong email or password")
+        |> configure_session(drop: true)
         |> render("new.html")
     end
   end
@@ -26,14 +26,9 @@ defmodule PhoenixCmsWeb.SessionController do
   def delete(conn, _) do
     conn
     |> Accounts.logout()
-    # |> redirect(to: blog_path(conn, :index))
+    # |> put_flash(:info, "See you space cowboy")
+    |> configure_session(drop: true)
+    |> redirect(to: Routes.blog_path(conn, :index))
   end
 
-  # Private functions
-  defp redirect_after_login(conn, user) do
-    case user.is_admin do
-      true -> redirect(conn, to: Routes.cms_home_path(conn, :index))
-      false -> redirect(conn, to: Routes.blog_path(conn, :index))
-    end
-  end
 end

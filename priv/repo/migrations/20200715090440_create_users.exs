@@ -4,7 +4,7 @@ defmodule PhoenixCms.Repo.Migrations.CreateUsers do
   def change do
     create table(:users) do
       add :name, :string
-      add :email, :string
+      add :email, :string, unique: true
       add :password_hash, :string
       add :is_admin, :boolean, default: false, null: false
 

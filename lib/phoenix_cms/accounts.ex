@@ -126,7 +126,7 @@ defmodule PhoenixCms.Accounts do
   def login(conn, user) do
     conn
     |> Guardian.Plug.sign_in(user)
-    |> assign(:current_user, user)
+    # |> assign(:current_user, user.id)
   end
 
   def logout(conn) do
@@ -137,6 +137,7 @@ defmodule PhoenixCms.Accounts do
   # Private functions
 
   defp check_password(nil, _), do: {:error, "Wrong email or password"}
+
   defp check_password(user, given_password) do
     case Argon2.verify_pass(given_password, user.password_hash) do
       true -> {:ok, user}
