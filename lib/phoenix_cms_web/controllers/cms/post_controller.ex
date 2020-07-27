@@ -5,7 +5,7 @@ defmodule PhoenixCmsWeb.Cms.PostController do
   alias PhoenixCms.Content
   alias PhoenixCms.Content.Post
 
-  plug :authorize_user when action in [:edit, :update, :delete]
+  plug :authorize_user when action in [:show, :edit, :update, :delete]
 
 
   def index(conn, _) do
