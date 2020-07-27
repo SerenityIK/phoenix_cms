@@ -27,7 +27,7 @@ defmodule PhoenixCmsWeb.SessionController do
     conn
     |> Accounts.logout()
     # |> put_flash(:info, "See you space cowboy")
-    |> configure_session(drop: true)
+    |> delete_session(:current_user)
     |> redirect(to: Routes.blog_path(conn, :index))
   end
 

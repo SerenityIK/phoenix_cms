@@ -5,7 +5,7 @@ defmodule PhoenixCmsWeb.Cms.PostController do
   alias PhoenixCms.Content
   alias PhoenixCms.Content.Post
 
-  plug :authorize_user when action in [:show, :edit, :update, :delete]
+  plug PhoenixCmsWeb.Plug.AuthorizeUser when action in [:show, :edit, :update, :delete]
 
 
   def index(conn, _) do
@@ -61,19 +61,6 @@ defmodule PhoenixCmsWeb.Cms.PostController do
     conn
     |> put_flash(:info, "Post deleted successfully.")
     |> redirect(to: Routes.cms_post_path(conn, :index))
-  end
-
-  defp authorize_user(conn, _) do
-    post = Content.get_post!(conn.params["id"])
-
-    if conn.assigns.current_user.id == post.user_id do
-      assign(conn, :post, post)
-    else
-      conn
-      |> put_flash(:error, "You can't modify that")
-      |> redirect(to: Routes.cms_post_path(conn, :index))
-      |> halt()
-    end
   end
 
 end
