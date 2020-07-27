@@ -125,7 +125,6 @@ defmodule PhoenixCms.Accounts do
   def login(conn, user) do
     conn
     |> Guardian.Plug.sign_in(user)
-    # |> assign(:current_user, user.id)
   end
 
   def logout(conn) do

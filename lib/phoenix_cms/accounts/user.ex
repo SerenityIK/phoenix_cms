@@ -7,23 +7,23 @@ defmodule PhoenixCms.Accounts.User do
 
   schema "users" do
     field :email, :string
-    field :is_admin, :boolean, default: false
     field :name, :string
     field :password_hash, :string
     field(:password, :string, virtual: true)
 
+    belongs_to :role, PhoenixCms.Role
     has_many :posts, Post
 
     timestamps()
   end
 
   @create_fields ~w(name password email)a
-  @optional_fields ~w(is_admin)a
+  # @optional_fields ~w(is_admin)a
 
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, @create_fields ++ @optional_fields)
+    |> cast(attrs, @create_fields)
     |> validate_required(@create_fields)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:name, min: 3)

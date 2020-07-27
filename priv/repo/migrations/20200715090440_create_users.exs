@@ -6,7 +6,6 @@ defmodule PhoenixCms.Repo.Migrations.CreateUsers do
       add :name, :string
       add :email, :string, unique: true
       add :password_hash, :string
-      add :is_admin, :boolean, default: false, null: false
 
       timestamps()
     end

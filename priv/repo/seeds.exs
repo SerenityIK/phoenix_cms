@@ -1,11 +1,10 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     PhoenixCms.Repo.insert!(%PhoenixCms.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias PhoenixCms.Repo
+alias PhoenixCms.Role
+alias PhoenixCms.Accounts.User
+
+role = %Role{}
+  |> Role.changeset(%{role: "admin", is_admin: true})
+  |> Repo.insert!()
+admin = %User{}
+  |> User.changeset(%{name: "admin", email: "admin@example.com", password: "admin1234", role_id: role.id})
+  |> Repo.insert!()
