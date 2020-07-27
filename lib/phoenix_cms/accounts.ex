@@ -4,7 +4,6 @@ defmodule PhoenixCms.Accounts do
   """
 
   import Ecto.Query, warn: false
-  import Plug.Conn
 
   alias PhoenixCms.Repo
   alias PhoenixCms.Accounts.Guardian
