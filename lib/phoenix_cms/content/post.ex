@@ -23,7 +23,7 @@ defmodule PhoenixCms.Content.Post do
   end
 
   @doc false
-  def create_changeset(post, attrs) do
+  def changeset(post, attrs) do
     post
     |> common_changeset(attrs)
     |> validate_required([:user_id, :cover])

@@ -28,7 +28,7 @@ defmodule PhoenixCms.Content do
   def create_post(user, post) do
     post = post
     |> Map.put("user_id", user.id)
-    changeset = Post.create_changeset(%Post{}, post)
+    changeset = Post.changeset(%Post{}, post)
     case changeset.valid? do
       true -> Repo.insert(changeset)
       false -> {:error, changeset}
@@ -36,7 +36,7 @@ defmodule PhoenixCms.Content do
   end
 
   def edit_post(%Post{} = post, params \\ %{}) do
-    Post.create_changeset(post, params)
+    Post.changeset(post, params)
   end
 
   def update_post(post, params) do

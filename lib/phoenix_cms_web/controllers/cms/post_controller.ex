@@ -14,7 +14,7 @@ defmodule PhoenixCmsWeb.Cms.PostController do
   end
 
   def new(conn, _) do
-    changeset = Post.create_changeset(%Post{}, %{})
+    changeset = Post.changeset(%Post{}, %{})
     render(conn, "new.html", changeset: changeset)
   end
 
