@@ -3,7 +3,6 @@ defmodule PhoenixCmsWeb.Cms.HomeController do
 
   alias PhoenixCms.Content
 
-  plug PhoenixCmsWeb.Plug.AssignUser
 
   def index(conn, _params) do
     posts = Content.list_posts(conn.assigns.current_user.id)

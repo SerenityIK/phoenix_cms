@@ -5,7 +5,6 @@ defmodule PhoenixCmsWeb.Cms.PostController do
   alias PhoenixCms.Content
   alias PhoenixCms.Content.Post
 
-  plug PhoenixCmsWeb.Plug.AssignUser
   plug :authorize_user when action in [:edit, :update, :delete]
 
 

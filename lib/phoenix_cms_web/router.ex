@@ -15,6 +15,7 @@ defmodule PhoenixCmsWeb.Router do
 
   pipeline :authenticated do
     plug Plug.EnsureAuth
+    plug Plug.AssignUser
   end
 
   pipeline :api do
@@ -32,6 +33,7 @@ defmodule PhoenixCmsWeb.Router do
 
   scope "/cms", PhoenixCmsWeb, as: :cms do
     pipe_through([:browser, :authenticated])
+
     get "/", Cms.HomeController, :index
     resources("/post", Cms.PostController) do
       get "/publish", Cms.PostController, :publish, as: :publish
