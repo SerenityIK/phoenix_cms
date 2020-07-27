@@ -6,8 +6,8 @@ defmodule PhoenixCms.Content do
   alias PhoenixCms.Content.Post
 
 
-  def list_posts() do
-    Repo.all(from p in Post, preload: :user)
+  def list_posts(id) do
+    Repo.all(from p in Post, where: p.user_id == ^id, preload: :user)
   end
 
   def get_published_posts() do
@@ -25,7 +25,7 @@ defmodule PhoenixCms.Content do
     |> Repo.preload([:user])
   end
 
-  def create_post(post, user) do
+  def create_post(user, post) do
     post = post
     |> Map.put("user_id", user.id)
     changeset = Post.create_changeset(%Post{}, post)
@@ -33,6 +33,10 @@ defmodule PhoenixCms.Content do
       true -> Repo.insert(changeset)
       false -> {:error, changeset}
     end
+  end
+
+  def edit_post(%Post{} = post, params \\ %{}) do
+    Post.create_changeset(post, params)
   end
 
   def update_post(post, params) do
