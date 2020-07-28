@@ -13,7 +13,7 @@ defmodule PhoenixCmsWeb.SessionController do
         |> Accounts.login(user)
         |> put_flash(:info, "Welcome back")
         |> put_session(:current_user, %{id: user.id, name: user.name})
-        |> redirect(to: Routes.cms_home_path(conn, :index))
+        |> redirect(to: Routes.blog_path(conn, :index))
 
       {:error, _} ->
         conn

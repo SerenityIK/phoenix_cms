@@ -18,9 +18,13 @@ defmodule PhoenixCmsWeb.Router do
     plug Plug.AssignUser
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :is_author? do
+    plug Plug.IsAuthor
   end
+
+  # pipeline :api do
+    # plug :accepts, ["json"]
+  # end
 
   scope "/", PhoenixCmsWeb do
     pipe_through :browser
@@ -32,7 +36,7 @@ defmodule PhoenixCmsWeb.Router do
   end
 
   scope "/cms", PhoenixCmsWeb, as: :cms do
-    pipe_through([:browser, :authenticated])
+    pipe_through([:browser, :authenticated, :is_author?])
 
     get "/", Cms.HomeController, :index
     resources("/post", Cms.PostController) do
