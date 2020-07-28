@@ -18,8 +18,8 @@ defmodule PhoenixCmsWeb.Router do
     plug Plug.AssignUser
   end
 
-  pipeline :is_author? do
-    plug Plug.IsAuthor
+  pipeline :is_privileged? do
+    plug Plug.IsPrivileged
   end
 
   # pipeline :api do
@@ -30,13 +30,13 @@ defmodule PhoenixCmsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources("/user", UserController, except: [:index])
+    resources("/user", UserController)
     resources("/session", SessionController, only: [:create, :new, :delete])
     resources("/blog", BlogController, only: [:index, :show])
   end
 
   scope "/cms", PhoenixCmsWeb, as: :cms do
-    pipe_through([:browser, :authenticated, :is_author?])
+    pipe_through([:browser, :authenticated, :is_privileged?])
 
     get "/", Cms.HomeController, :index
     resources("/post", Cms.PostController) do

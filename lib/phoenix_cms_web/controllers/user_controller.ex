@@ -4,6 +4,12 @@ defmodule PhoenixCmsWeb.UserController do
   alias PhoenixCms.Accounts
   alias PhoenixCms.Accounts.User
 
+  plug PhoenixCmsWeb.Plug.AuthorizeAdmin when action in [:index]
+
+  def index(conn, _params) do
+    Accounts.list_users()
+    render(conn, "index.html")
+  end
 
   def new(conn, _params) do
     changeset = Accounts.change_user(%User{})

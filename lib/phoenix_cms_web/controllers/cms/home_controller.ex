@@ -6,7 +6,20 @@ defmodule PhoenixCmsWeb.Cms.HomeController do
 
 
   def index(conn, _params) do
-    posts = Content.list_posts(conn.assigns.current_user.id)
+    user = conn.assigns.current_user
+
+    if user.role_id == 1 do
+      posts = Content.list_posts()
+      conn
+      |> context(posts)
+    else
+      posts = Content.list_posts(user.id)
+      conn
+      |> context(posts)
+    end
+  end
+
+  def context(conn, posts) do
     context = %{
       total_posts: length(posts),
       published_posts: Enum.count(posts, & &1.published),
@@ -14,5 +27,4 @@ defmodule PhoenixCmsWeb.Cms.HomeController do
     }
     render(conn, "index.html", context: context)
   end
-
 end

@@ -9,8 +9,15 @@ defmodule PhoenixCmsWeb.Cms.PostController do
 
 
   def index(conn, _) do
-    posts = Content.list_posts(conn.assigns.current_user.id)
-    render(conn, "index.html", posts: posts)
+    user = conn.assigns.current_user
+
+    if user.role_id == 1 do
+      posts = Content.list_posts()
+      render(conn, "index.html", posts: posts)
+    else
+      posts = Content.list_posts(user.id)
+      render(conn, "index.html", posts: posts)
+    end
   end
 
   def new(conn, _) do

@@ -5,6 +5,9 @@ defmodule PhoenixCms.Content do
   alias PhoenixCms.Repo
   alias PhoenixCms.Content.Post
 
+  def list_posts() do
+    Repo.all(from p in Post, preload: :user)
+  end
 
   def list_posts(id) do
     Repo.all(from p in Post, where: p.user_id == ^id, preload: :user)
