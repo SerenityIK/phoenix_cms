@@ -13,5 +13,7 @@ defmodule PhoenixCms.Repo.Migrations.CreatePosts do
       timestamps()
     end
 
+    create index(:posts, [:user_id])
+
   end
 end

@@ -11,6 +11,7 @@ defmodule PhoenixCmsWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    # params_with_role = Map.merge(user_params, %{"role_id" => 4})
     case Accounts.create_user(user_params) do
       {:ok, user} ->
         conn

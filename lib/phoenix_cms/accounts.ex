@@ -5,10 +5,9 @@ defmodule PhoenixCms.Accounts do
 
   import Ecto.Query, warn: false
 
-  alias PhoenixCms.Repo
   alias PhoenixCms.Accounts.Guardian
   alias PhoenixCms.Accounts.User
-
+  alias PhoenixCms.Repo
 
   @doc """
   Returns the list of users.
@@ -52,8 +51,9 @@ defmodule PhoenixCms.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
+    user = Map.merge(attrs, %{"role_id" => 4})
     %User{}
-    |> User.changeset(attrs)
+    |> User.changeset(user)
     |> Repo.insert()
   end
 
@@ -102,18 +102,6 @@ defmodule PhoenixCms.Accounts do
   """
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
-  end
-
-  def get_current_user(conn) do
-    Guardian.Plug.current_resource(conn)
-  end
-
-  def is_current_user_admin?(conn) do
-    user = Guardian.Plug.current_resource(conn)
-    case user do
-      nil -> false
-      user -> user.is_admin
-    end
   end
 
   def authenticate_user(email, given_password) do
