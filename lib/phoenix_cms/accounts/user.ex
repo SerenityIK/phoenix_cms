@@ -3,6 +3,7 @@ defmodule PhoenixCms.Accounts.User do
   import Ecto.Changeset
 
   alias PhoenixCms.Content.Post
+  alias PhoenixCms.Role
 
 
   schema "users" do
@@ -11,13 +12,13 @@ defmodule PhoenixCms.Accounts.User do
     field :password_hash, :string
     field(:password, :string, virtual: true)
 
-    belongs_to :role, PhoenixCms.Role
+    belongs_to :role, Role
     has_many :posts, Post
 
     timestamps()
   end
 
-  @create_fields ~w(name password email)a
+  @create_fields ~w(name password email role_id)a
   # @optional_fields ~w(is_admin)a
 
   @doc false
