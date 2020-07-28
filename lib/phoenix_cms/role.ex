@@ -3,7 +3,6 @@ defmodule PhoenixCms.Role do
   import Ecto.Changeset
 
   schema "roles" do
-    field :admin, :boolean, default: false
     field :role, :string
 
     has_many :users, PhoenixCms.Accounts.User
@@ -13,7 +12,7 @@ defmodule PhoenixCms.Role do
   @doc false
   def changeset(role, attrs) do
     role
-    |> cast(attrs, [:role, :admin])
-    |> validate_required([:role, :admin])
+    |> cast(attrs, [:role])
+    |> validate_required([:role])
   end
 end

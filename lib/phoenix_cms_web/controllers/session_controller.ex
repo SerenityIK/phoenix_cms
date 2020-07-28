@@ -18,7 +18,7 @@ defmodule PhoenixCmsWeb.SessionController do
       {:error, _} ->
         conn
         |> put_flash(:error, "Wrong email or password")
-        |> configure_session(drop: true)
+        |> delete_session(:current_user)
         |> render("new.html")
     end
   end

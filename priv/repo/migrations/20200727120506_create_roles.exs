@@ -3,8 +3,7 @@ defmodule PhoenixCms.Repo.Migrations.CreateRoles do
 
   def change do
     create table(:roles) do
-      add :role, :string
-      add :admin, :boolean, default: false, null: false
+      add :role, :string, default: "user", null: "user"
 
       timestamps()
     end
