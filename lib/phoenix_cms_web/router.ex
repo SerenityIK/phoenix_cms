@@ -30,16 +30,21 @@ defmodule PhoenixCmsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources("/user", UserController, except: [:index])
+    resources("/user", UserController, except: [:edit, :update, :delete])
     resources("/session", SessionController, only: [:create, :new, :delete])
     resources("/blog", BlogController, only: [:index, :show])
+  end
+
+  scope "/user", PhoenixCmsWeb do
+    pipe_through([:browser, :authenticated])
+
+    resources("/", UserController, only: [:edit, :update, :delete])
   end
 
   scope "/cms", PhoenixCmsWeb, as: :cms do
     pipe_through([:browser, :authenticated, :is_privileged?])
 
     get "/", Cms.HomeController, :index
-    get "user", UserController, :index
     resources("/post", Cms.PostController) do
       get "/publish", Cms.PostController, :publish, as: :publish
     end

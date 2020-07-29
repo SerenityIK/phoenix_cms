@@ -8,6 +8,7 @@ defmodule PhoenixCms.Accounts do
   alias PhoenixCms.Accounts.Guardian
   alias PhoenixCms.Accounts.User
   alias PhoenixCms.Repo
+  alias PhoenixCms.Role
 
   @doc """
   Returns the list of users.
@@ -118,6 +119,10 @@ defmodule PhoenixCms.Accounts do
   def logout(conn) do
     conn
     |> Guardian.Plug.sign_out()
+  end
+
+  def list_roles() do
+    Repo.all(Role)
   end
 
   # Private functions

@@ -4,11 +4,11 @@ defmodule PhoenixCmsWeb.UserController do
   alias PhoenixCms.Accounts
   alias PhoenixCms.Accounts.User
 
-  plug PhoenixCmsWeb.Plug.AuthorizeAdmin when action in [:index]
+  # plug PhoenixCmsWeb.Plug.AuthorizeAdmin when action in [:index]
 
   def index(conn, _params) do
-    Accounts.list_users()
-    render(conn, "index.html")
+    users = Accounts.list_users()
+    render(conn, "index.html", users: users)
   end
 
   def new(conn, _params) do
@@ -34,12 +34,14 @@ defmodule PhoenixCmsWeb.UserController do
   end
 
   def edit(conn, %{"id" => id}) do
+    roles = Accounts.list_roles()
     user = Accounts.get_user!(id)
     changeset = Accounts.change_user(user)
-    render(conn, "edit.html", user: user, changeset: changeset)
+    render(conn, "edit.html", user: user, changeset: changeset, roles: roles)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
+    roles = Accounts.list_roles()
     user = Accounts.get_user!(id)
 
     case Accounts.update_user(user, user_params) do
@@ -49,7 +51,7 @@ defmodule PhoenixCmsWeb.UserController do
         |> redirect(to: Routes.user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", user: user, changeset: changeset)
+        render(conn, "edit.html", user: user, changeset: changeset, roles: roles)
     end
   end
 
