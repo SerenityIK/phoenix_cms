@@ -4,7 +4,7 @@ defmodule PhoenixCmsWeb.UserController do
   alias PhoenixCms.Accounts
   alias PhoenixCms.Accounts.User
 
-  # plug PhoenixCmsWeb.Plug.AuthorizeAdmin when action in [:index]
+  plug PhoenixCmsWeb.Plug.AuthorizeAdmin when action not in [:index, :show]
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -33,9 +33,9 @@ defmodule PhoenixCmsWeb.UserController do
     render(conn, "show.html", user: user)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, _) do
     roles = Accounts.list_roles()
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user!(conn.assigns.user_acc)
     changeset = Accounts.change_user(user)
     render(conn, "edit.html", user: user, changeset: changeset, roles: roles)
   end

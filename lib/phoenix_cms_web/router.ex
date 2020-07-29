@@ -22,6 +22,10 @@ defmodule PhoenixCmsWeb.Router do
     plug Plug.IsPrivileged
   end
 
+  pipeline :is_admin? do
+    plug Plug.AuthorizeAdmin
+  end
+
   # pipeline :api do
     # plug :accepts, ["json"]
   # end
@@ -58,7 +62,7 @@ defmodule PhoenixCmsWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-    pipe_through([:browser, :authenticated])
+    pipe_through([:browser, :authenticated, :is_admin?])
     live_dashboard("/dashboard", metrics: ProjectPhoenixWeb.Telemetry)
     end
   end

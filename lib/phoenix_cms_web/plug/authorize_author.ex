@@ -5,13 +5,14 @@ defmodule PhoenixCmsWeb.Plug.AuthorizeAuthor do
   import Plug.Conn
 
   alias PhoenixCms.Content
+  alias PhoenixCms.Accounts
 
 
   def init(default), do: default
 
   def call(conn, _) do
     post = Content.get_post!(conn.params["id"])
-    user = conn.assigns.current_user.id
+    user = Accounts.get_user!(conn.assigns.current_user.id)
 
     if user.id == post.user_id && user.role_id == 3 || user.role_id == 1 do
       assign(conn, :post, post)
