@@ -4,7 +4,7 @@ defmodule PhoenixCmsWeb.UserController do
   alias PhoenixCms.Accounts
   alias PhoenixCms.Accounts.User
 
-  plug PhoenixCmsWeb.Plug.AuthorizeUser when action not in [:index, :show]
+  plug PhoenixCmsWeb.Plug.AuthorizeUser when action not in [:index, :new, :show]
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -40,9 +40,9 @@ defmodule PhoenixCmsWeb.UserController do
     render(conn, "edit.html", user: user, changeset: changeset, roles: roles)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
+  def update(conn, %{"user" => user_params}) do
     roles = Accounts.list_roles()
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user!(conn.assigns.user_acc.id)
 
     case Accounts.update_user(user, user_params) do
       {:ok, user} ->
@@ -55,12 +55,13 @@ defmodule PhoenixCmsWeb.UserController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+  def delete(conn, _) do
+    user = Accounts.get_user!(conn.assigns.user_acc.id)
     {:ok, _user} = Accounts.delete_user(user)
 
     conn
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: Routes.user_path(conn, :index))
   end
+
 end
