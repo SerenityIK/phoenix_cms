@@ -8,6 +8,7 @@ defmodule PhoenixCms.Role do
     field :role, :string
 
     has_many :users, User
+   
     timestamps()
   end
 

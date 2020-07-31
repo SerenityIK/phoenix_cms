@@ -7,6 +7,7 @@ defmodule PhoenixCms.Content.Post do
 
   alias PhoenixCms.Accounts.User
   alias PhoenixCmsWeb.Uploaders.Cover
+  alias PhoenixCms.Comment
 
   # @derive {Phoenix.Param, key: :slug}
 
@@ -18,6 +19,7 @@ defmodule PhoenixCms.Content.Post do
     field :cover, Cover.Type
 
     belongs_to :user, User
+    has_many :comments, Comment
 
     timestamps()
   end

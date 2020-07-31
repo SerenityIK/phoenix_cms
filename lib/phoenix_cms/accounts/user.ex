@@ -4,6 +4,7 @@ defmodule PhoenixCms.Accounts.User do
 
   alias PhoenixCms.Content.Post
   alias PhoenixCms.Role
+  alias PhoenixCms.Comment
 
 
   schema "users" do
@@ -14,6 +15,7 @@ defmodule PhoenixCms.Accounts.User do
 
     belongs_to :role, Role
     has_many :posts, Post
+    has_many :comments, Comment
 
     timestamps()
   end

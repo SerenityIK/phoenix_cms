@@ -42,7 +42,9 @@ defmodule PhoenixCmsWeb.Router do
   scope "/user", PhoenixCmsWeb do
     pipe_through([:browser, :authenticated])
 
-    resources("/", UserController, only: [:edit, :update, :delete])
+    resources("/", UserController, only: [:edit, :update, :delete]) do
+      resources("/comments", CommentController, only: [:create, :update, :delete])
+    end
   end
 
   scope "/cms", PhoenixCmsWeb, as: :cms do
