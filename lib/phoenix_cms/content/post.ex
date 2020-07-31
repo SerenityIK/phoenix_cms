@@ -35,6 +35,7 @@ defmodule PhoenixCms.Content.Post do
     |> cast_attachments(attrs, [:cover])
     |> validate_required([:title, :body])
     |> validate_length(:title, min: 3)
+    |> trim_usafe_body(attrs)
     |> process_slug()
   end
 
@@ -48,5 +49,13 @@ defmodule PhoenixCms.Content.Post do
   end
 
   defp process_slug(changeset), do: changeset
+
+  defp trim_usafe_body(changeset, %{"body" => body}) do
+    {:safe, clean_body} = Phoenix.HTML.html_escape(body)
+    changeset
+    |> put_change(:body, clean_body)
+  end
+
+  defp trim_usafe_body(changeset, _), do: changeset
 
 end

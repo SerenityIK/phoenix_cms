@@ -4,7 +4,7 @@
     <img src="<%= PhoenixCmsWeb.Uploaders.Cover.url({post.cover, post}, :thumb) %>" alt="Card image">
     <div>
       <%= post.title %>
-      <br><br><p><%= post_excerpt(post) %></p>
+      <br><br><p><%= markdown(post_excerpt(post)) %></p>
     </div>
     <div>
       <small>

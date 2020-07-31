@@ -13,7 +13,7 @@
 
   <div class="form-group">
   <%= label f, :body %>
-  <%= textarea f, :body, placeholder: "Content" %>
+  <%= textarea f, :body, placeholder: "Content", class: "form-control", id: "" %>
   <%= error_tag f, :body %>
   </div>
 
@@ -31,3 +31,7 @@
     <%= submit "Save" %>
   </div>
 <% end %>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script>var simplemde = new SimpleMDE();</script>

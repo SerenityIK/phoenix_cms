@@ -6,6 +6,6 @@
     <br><br>
   </div>
 
-  <%= raw Earmark.as_html!(@post.body) %>
+  <%= markdown(@post.body) %>
 
 </div>

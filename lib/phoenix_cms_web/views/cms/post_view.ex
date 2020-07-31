@@ -13,4 +13,10 @@ defmodule PhoenixCmsWeb.Cms.PostView do
     relative_str
   end
 
+  def markdown(body) do
+    body
+    |> Earmark.as_html!(%Earmark.Options{smartypants: false})
+    |> raw()
+  end
+
 end

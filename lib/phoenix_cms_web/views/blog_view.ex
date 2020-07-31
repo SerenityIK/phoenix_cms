@@ -9,4 +9,11 @@ defmodule PhoenixCmsWeb.BlogView do
   def post_excerpt(post) do
     String.slice(post.body, 0..120) <> "..."
   end
+
+  def markdown(body) do
+   body
+   |> Earmark.as_html!(%Earmark.Options{smartypants: false})
+   |> raw()
+   end
+
 end
