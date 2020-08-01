@@ -7,8 +7,8 @@ defmodule PhoenixCms.Accounts do
 
   alias PhoenixCms.Accounts.Guardian
   alias PhoenixCms.Accounts.User
+  alias PhoenixCms.Content.Role
   alias PhoenixCms.Repo
-  alias PhoenixCms.Role
 
   @doc """
   Returns the list of users.

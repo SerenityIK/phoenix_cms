@@ -1,4 +1,4 @@
-defmodule PhoenixCms.Role do
+defmodule PhoenixCms.Accounts.Role do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -8,7 +8,7 @@ defmodule PhoenixCms.Role do
     field :role, :string
 
     has_many :users, User
-   
+
     timestamps()
   end
 

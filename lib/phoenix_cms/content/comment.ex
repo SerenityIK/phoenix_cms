@@ -1,4 +1,4 @@
-defmodule PhoenixCms.Comment do
+defmodule PhoenixCms.Content.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 

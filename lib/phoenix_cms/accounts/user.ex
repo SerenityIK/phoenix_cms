@@ -3,7 +3,7 @@ defmodule PhoenixCms.Accounts.User do
   import Ecto.Changeset
 
   alias PhoenixCms.Content.Post
-  alias PhoenixCms.Role
+  alias PhoenixCms.Content.Role
   alias PhoenixCms.Comment
 
 
