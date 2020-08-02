@@ -7,7 +7,7 @@ defmodule PhoenixCms.Accounts.Role do
   schema "roles" do
     field :role, :string
 
-    has_many :users, User
+    has_many :user, User
 
     timestamps()
   end

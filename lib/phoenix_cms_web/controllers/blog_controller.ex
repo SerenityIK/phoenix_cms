@@ -1,8 +1,11 @@
 defmodule PhoenixCmsWeb.BlogController do
   use PhoenixCmsWeb, :controller
 
+  import Ecto
+
   alias PhoenixCms.Content
-  alias PhoenixCms.Content.Post
+  alias PhoenixCms.Content.Comment
+  alias PhoenixCms.Repo
 
 
   def index(conn, _) do
@@ -11,8 +14,11 @@ defmodule PhoenixCmsWeb.BlogController do
   end
 
   def show(conn, %{"id" => slug}) do
-    with %Post{} = post <- Content.get_post!(slug) do
-      render(conn, "show.html", post: post)
-    end
+    post = Content.get_post!(slug) |> Repo.preload(:comments)
+    comment_changeset = post
+      |> build_assoc(:comments)
+      |> Comment.changeset()
+    render(conn, "show.html", post: post, changeset: comment_changeset)
   end
+
 end

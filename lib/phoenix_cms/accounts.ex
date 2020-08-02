@@ -7,7 +7,7 @@ defmodule PhoenixCms.Accounts do
 
   alias PhoenixCms.Accounts.Guardian
   alias PhoenixCms.Accounts.User
-  alias PhoenixCms.Content.Role
+  alias PhoenixCms.Accounts.Role
   alias PhoenixCms.Repo
 
   @doc """

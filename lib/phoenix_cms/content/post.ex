@@ -7,7 +7,7 @@ defmodule PhoenixCms.Content.Post do
 
   alias PhoenixCms.Accounts.User
   alias PhoenixCmsWeb.Uploaders.Cover
-  alias PhoenixCms.Comment
+  alias PhoenixCms.Content.Comment
 
   # @derive {Phoenix.Param, key: :slug}
 

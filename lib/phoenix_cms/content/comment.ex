@@ -2,9 +2,6 @@ defmodule PhoenixCms.Content.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PhoenixCms.Accounts.User
-  alias PhoenixCms.Content.Post
-
 
   schema "comments" do
     field :approved, :boolean, default: false
@@ -12,14 +9,11 @@ defmodule PhoenixCms.Content.Comment do
     field :user_id, :id
     field :post_id, :id
 
-    belongs_to :users, User
-    belongs_to :posts, Post
-
     timestamps()
   end
 
   @doc false
-  def changeset(comment, attrs) do
+  def changeset(comment, attrs \\ %{}) do
     comment
     |> cast(attrs, [:body, :approved])
     |> validate_required([:body, :approved])

@@ -9,3 +9,5 @@
   <%= markdown(@post.body) %>
 
 </div>
+
+<%= render PhoenixCmsWeb.CommentView, "form.html", Map.put(assigns, :action, Routes.user_comment_path(@conn, :create, @post)) %>

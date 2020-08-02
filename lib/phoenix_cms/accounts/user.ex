@@ -3,8 +3,8 @@ defmodule PhoenixCms.Accounts.User do
   import Ecto.Changeset
 
   alias PhoenixCms.Content.Post
-  alias PhoenixCms.Content.Role
-  alias PhoenixCms.Comment
+  alias PhoenixCms.Content.Comment
+  alias PhoenixCms.Accounts.Role
 
 
   schema "users" do
@@ -14,7 +14,7 @@ defmodule PhoenixCms.Accounts.User do
     field(:password, :string, virtual: true)
 
     belongs_to :role, Role
-    has_many :posts, Post
+    has_many :post, Post
     has_many :comments, Comment
 
     timestamps()
