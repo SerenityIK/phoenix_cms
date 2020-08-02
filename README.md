@@ -1,5 +1,15 @@
 # PhoenixCms
 
+Blog CMS
+
+Features:
+
+  * Theme created with materialaze framework
+  * Ultra fast
+  * User rights restriction system: average users can add comments, authors can publish posts, moderators and admins has rights to change and delete comments and posts
+  * Markdown editor
+  * View counter
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
@@ -8,13 +18,3 @@ To start your Phoenix server:
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
