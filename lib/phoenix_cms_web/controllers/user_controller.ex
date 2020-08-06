@@ -4,7 +4,7 @@ defmodule PhoenixCmsWeb.UserController do
   alias PhoenixCms.Accounts
   alias PhoenixCms.Accounts.User
 
-  plug PhoenixCmsWeb.Plug.AuthorizeUser when action not in [:index, :new, :show]
+  plug PhoenixCmsWeb.Plug.AuthorizeUser when action in [:edit, :update, :delete]
 
   def index(conn, _params) do
     users = Accounts.list_users()
