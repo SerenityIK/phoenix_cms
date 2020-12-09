@@ -2,15 +2,15 @@
 
 Blog CMS
 
-**Features:**
+## Features
 
-  * Theme created with materialaze framework
-  * Ultra fast
-  * User rights restriction system: average users can add comments, authors can publish posts, moderators and admins has rights to change and delete comments and posts
-  * Markdown editor
-  * View counter
+  *   Theme created with materialaze framework
+  *   Ultra fast
+  *   User rights restriction system: average users can add comments, authors can publish posts, moderators and admins has rights to  change and delete comments and posts
+  *   Markdown editor
+  *   View counter
 
-**To start your Phoenix server:**
+## To start your Phoenix server
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
