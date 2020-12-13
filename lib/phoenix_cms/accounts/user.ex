@@ -21,7 +21,6 @@ defmodule PhoenixCms.Accounts.User do
   end
 
   @create_fields ~w(name password email role_id)a
-  # @optional_fields ~w(is_admin)a
 
   @doc false
   def changeset(user, attrs) do

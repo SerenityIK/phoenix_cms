@@ -9,7 +9,6 @@ defmodule PhoenixCms.Content.Post do
   alias PhoenixCmsWeb.Uploaders.Cover
   alias PhoenixCms.Content.Comment
 
-  # @derive {Phoenix.Param, key: :slug}
 
   schema "posts" do
     field :body, :string
