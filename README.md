@@ -18,4 +18,7 @@ Blog CMS
   *   Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-Use credentials to log in - Login: admin@example.com, Password: admin1234
+
+### Credentials to log in
+
+Login: admin@example.com, password: admin1234
