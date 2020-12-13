@@ -1,5 +1,5 @@
 alias PhoenixCms.Repo
-alias PhoenixCms.Role
+alias PhoenixCms.Accounts.Role
 alias PhoenixCms.Accounts.User
 
 role = %Role{}
