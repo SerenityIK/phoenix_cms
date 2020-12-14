@@ -60,12 +60,14 @@ defmodule PhoenixCmsWeb.Router do
   # scope "/api", PhoenixCmsWeb do
   #   pipe_through :api
   # end
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-    pipe_through([:browser, :authenticated, :is_admin?])
-    live_dashboard("/dashboard", metrics: ProjectPhoenixWeb.Telemetry)
-    end
-  end
+  # Enable dashboard
+  # if Mix.env() in [:dev, :test] do
+    # import Phoenix.LiveDashboard.Router
+
+    # scope "/" do
+    # pipe_through([:browser, :authenticated, :is_admin?])
+    # live_dashboard("/dashboard", metrics: ProjectPhoenixWeb.Telemetry)
+    # end
+  # end
 end
