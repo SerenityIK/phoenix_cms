@@ -54,7 +54,7 @@ defmodule PhoenixCms.MixProject do
       {:timex, "~> 3.5"},
 
       # User authentication
-      {:argon2_elixir, "~> 2.3.0"},
+      {:argon2_elixir, "~> 2.4.0"},
       {:guardian, "~> 2.0"},
     ]
   end
