@@ -11,7 +11,7 @@ Blog CMS
 
 ## To start your Phoenix server
 
-  *   Install ImageMagick (used by Arc)
+  *   Install ImageMagick (being used by Arc)
   *   Install dependencies with `mix deps.get`
   *   Create and migrate your database with `mix ecto.setup`
   *   Install Node.js dependencies with `npm install` inside the `assets` directory
